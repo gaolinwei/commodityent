@@ -5,18 +5,9 @@
         <img :src="logo" alt="" />
       </div>
       <div>
-        <el-menu
-          background-color="#0a1b4b"
-          text-color="#fff"
-          active-text-color="#ffd04b"
-          :default-active="activeIndex"
-          @select="handleSelect"
-        >
-          <el-menu-item
-            v-for="route in pageRoutes"
-            :key="route.path"
-            :index="route.path"
-          >
+        <el-menu background-color="#0a1b4b" text-color="#fff" active-text-color="#ffd04b" :default-active="activeIndex"
+          @select="handleSelect">
+          <el-menu-item v-for="route in pageRoutes" :key="route.path" :index="route.path">
             <i class="el-icon-menu"></i>
             <span slot="title">{{ route.meta.title }}</span>
           </el-menu-item>
@@ -25,16 +16,10 @@
     </div>
 
     <div class="right">
-    {{ activeIndex }}
-
       <div class="title">{{ getTitle }}</div>
       <div class="menus">
-        <div
-          v-for="(item, index) in getChildren"
-          :key="item.path"
-          :class="index === 0 ? 'active' : ''"
-          @click="handleClickMenu(item)"
-        >
+        <div v-for="(item, index) in getChildren" :key="item.path" :class="index === listIndex ? 'active' : ''"
+          @click="handleClickMenu(item, index)">
           {{ item.meta.title }}
         </div>
       </div>
@@ -50,6 +35,7 @@ export default {
       logo: `https://pic4.zhimg.com/80/v2-f181aebbaada09c4335fde88d646d957_1440w.webp`,
       pageRoutes,
       activeIndex: sessionStorage.getItem('activeIndex') || "goods",
+      listIndex: sessionStorage.getItem('listIndex') || 0
     }
   },
   methods: {
@@ -57,7 +43,9 @@ export default {
       this.activeIndex = index
       sessionStorage.setItem('activeIndex', index)
     },
-    handleClickMenu({ name }) {
+    handleClickMenu({ name }, index) {
+      this.listIndex = index;
+      sessionStorage.setItem('listIndex', index)
       this.$router.push({
         name
       })
@@ -76,7 +64,7 @@ export default {
     },
   },
   mounted() {
-    console.log(this.$store)
+    console.log(this.$store, "1")
   },
 }
 </script>
@@ -117,7 +105,7 @@ export default {
       font-size: 14px;
       padding: 10px;
 
-      & > div {
+      &>div {
         padding: 5px 10px;
         border-radius: 5px;
         cursor: pointer;
