@@ -1,0 +1,37 @@
+POST {{baseUrl}}/api/v1/mall-bk/category/save
+Content-Type: application/json
+
+{
+  "parentCode": "CP0000004",
+  "categoryName": "木叶村"
+}
+
+###
+
+POST {{baseUrl}}/api/v1/mall-bk/category/tree
+Content-Type: application/json
+
+{
+  "enabled": 1
+}
+
+###
+
+POST {{baseUrl}}/api/v1/mall-bk/category/delete
+Content-Type: application/json
+
+{
+  "categoryCode": "CP0000007"
+}
+
+###
+
+POST {{baseUrl}}/api/v1/mall-bk/category/update
+Content-Type: application/json
+
+{
+  "categoryName": "云隐村",
+  "categoryCode": "CP0000006"
+}
+
+###
