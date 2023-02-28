@@ -1,0 +1,155 @@
+POST {{baseUrl}}/product/save
+Content-Type: application/json
+
+{
+  "loginUserName": "gaolg",
+  "productCode": "NRSS-SP-004",
+  "productName": "自来也",
+  "weight": 0,
+  "specType": 1,
+  "limitBuyType": 0,
+  "limitBuyNum": 1,
+  "label": 1,
+  "grade": "SP",
+  "score": "9.5",
+  "categoryCode": "CP0000011",
+  "deliveryTypeList": [1, 2],
+  "description": "蛤蟆仙人",
+  "productImageList": ["http://192.168.79.128:8080/image/420aa97cc42f47ac8f15200c91c8077a.png"],
+  "skuList": [{
+    "salePrice": 100
+  }]
+}
+
+###
+
+POST {{baseUrl}}/product/save
+Content-Type: application/json
+
+{
+  "loginUserName": "gaolg",
+  "productCode": "NRSS-SP-005",
+  "productName": "自来也",
+  "weight": 0,
+  "specType": 2,
+  "limitBuyType": 0,
+  "limitBuyNum": 1,
+  "label": 1,
+  "grade": "SP",
+  "score": "9.5",
+  "categoryCode": "CP0000011",
+  "deliveryTypeList": [1, 2],
+  "description": "蛤蟆仙人",
+  "productImageList": ["http://192.168.79.128:8080/image/420aa97cc42f47ac8f15200c91c8077a.png"],
+  "skuList": [
+    {
+      "salePrice": 100,
+      "skuImageList": ["http://192.168.79.128:8080/image/420aa97cc42f47ac8f15200c91c8077a.png"],
+      "skuSpecList": [
+        {
+          "specName": "颜色",
+          "specValue": "红色",
+          "sort": 0
+        },
+        {
+          "specName": "尺寸",
+          "specValue": "S",
+          "sort": 0
+        }
+      ]
+    },
+    {
+      "salePrice": 90,
+      "skuImageList": ["http://192.168.79.128:8080/image/420aa97cc42f47ac8f15200c91c8077a.png"],
+      "skuSpecList": [
+        {
+          "specName": "颜色",
+          "specValue": "红色",
+          "sort": 0
+        },
+        {
+          "specName": "尺寸",
+          "specValue": "L",
+          "sort": 1
+        }
+      ]
+    }
+  ]
+}
+
+###
+
+POST {{baseUrl}}/product/update
+Content-Type: application/json
+
+{
+  "loginUserName": "gaolg",
+  "productCode": "NRSS-SP-005",
+  "productName": "自来也",
+  "weight": 0,
+  "specType": 2,
+  "specNameList": ["颜色", "尺寸"],
+  "limitBuyType": 0,
+  "limitBuyNum": 1,
+  "label": 1,
+  "grade": "SP",
+  "score": "9.5",
+  "categoryCode": "CP0000011",
+  "deliveryTypeList": [1, 2],
+  "description": "蛤蟆仙人",
+  "productImageList": ["http://192.168.79.128:8080/image/420aa97cc42f47ac8f15200c91c8077a.png"],
+  "skuList": [
+    {
+      "salePrice": 100,
+      "skuImageList": ["http://192.168.79.128:8080/image/420aa97cc42f47ac8f15200c91c8077a.png"],
+      "skuSpecList": [
+        {
+          "specName": "颜色",
+          "specValue": "红色",
+          "sort": 0
+        },
+        {
+          "specName": "尺寸",
+          "specValue": "S",
+          "sort": 0
+        }
+      ]
+    },
+    {
+      "salePrice": 90,
+      "skuImageList": ["http://192.168.79.128:8080/image/420aa97cc42f47ac8f15200c91c8077a.png"],
+      "skuSpecList": [
+        {
+          "specName": "颜色",
+          "specValue": "红色",
+          "sort": 0
+        },
+        {
+          "specName": "尺寸",
+          "specValue": "L",
+          "sort": 1
+        }
+      ]
+    }
+  ]
+}
+
+###
+
+POST {{baseUrl}}/product/detail
+Content-Type: application/json
+
+{
+  "productCode": "NRSS-SP-005"
+}
+
+###
+
+POST {{baseUrl}}/product/list
+Content-Type: application/json
+
+{
+
+}
+
+###

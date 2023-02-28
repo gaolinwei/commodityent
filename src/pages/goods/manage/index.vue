@@ -6,17 +6,17 @@
                 <div class="el-bg">
                     <!--  -->
                     <el-row :gutter="20">
-                        <el-col :span="4">
+                        <el-col :span="6">
                             <el-form-item label="商品名称：">
                                 <el-input v-model="form.goodsName"></el-input>
                             </el-form-item>
                         </el-col>
-                        <el-col :span="4">
+                        <el-col :span="6">
                             <el-form-item label="商品编码：">
                                 <el-input v-model="form.goodsCode"></el-input>
                             </el-form-item>
                         </el-col>
-                        <el-col :span="4">
+                        <el-col :span="6">
                             <el-form-item label="商品款号：">
                                 <el-input v-model="form.goodsType"></el-input>
                             </el-form-item>
@@ -24,12 +24,12 @@
                     </el-row>
                     <!--  -->
                     <el-row :gutter="20">
-                        <el-col :span="8">
+                        <el-col :span="12">
                             <el-form-item label="业态：">
                                 <el-input v-model="form.goodsName"></el-input>
                             </el-form-item>
                         </el-col>
-                        <el-col :span="4">
+                        <el-col :span="6">
                             <el-form-item label="上下架状态：">
                                 <el-select placeholder="请选择">
                                     <el-option label="item.label" value="item.value">
@@ -40,7 +40,7 @@
                     </el-row>
                     <!--  -->
                     <el-row :gutter="20">
-                        <el-col :span="4">
+                        <el-col :span="6">
                             <el-form-item label="审核状态：">
                                 <el-select placeholder="请选择">
                                     <el-option label="item.label" value="item.value">
@@ -48,7 +48,7 @@
                                 </el-select>
                             </el-form-item>
                         </el-col>
-                        <el-col :span="4">
+                        <el-col :span="6">
                             <el-form-item label="是否有货：">
                                 <el-select placeholder="请选择">
                                     <el-option label="item.label" value="item.value">
@@ -56,7 +56,7 @@
                                 </el-select>
                             </el-form-item>
                         </el-col>
-                        <el-col :span="4">
+                        <el-col :span="6">
                             <el-form-item label="关联活动：">
                                 <el-input v-model="form.goodsName"></el-input>
                             </el-form-item>
