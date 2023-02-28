@@ -4,7 +4,7 @@
             @selection-change="handleSelectionChange">
             <el-table-column type="selection">
             </el-table-column>
-            <el-table-column v-for="item in goodsData" :prop="item.prop" :label="item.label">
+            <el-table-column v-for="item in columns" :prop="item.prop" :label="item.label">
                 <template #default="{ row }">
                     <div v-if="item.prop === 'productName'" class="productName">
                         <div>
@@ -16,7 +16,7 @@
                         </div>
                     </div>
 
-                    <div v-else>{{ row[item.prop] }}</div>
+                    <div v-else>{{ row[item.prop] }}{{ item.prop }}</div>
                 </template>
 
             </el-table-column>
@@ -36,7 +36,7 @@
 </template>
 <script>
 import "@/styles/common.less"
-import axios from "axios"
+import { post } from "@/utils/request"
 export default {
     data() {
         return {
@@ -44,7 +44,7 @@ export default {
             pageSize: 0,
             total: 0,
             checked: false,
-            goodsData: [
+            columns: [
                 {
                     prop: "productName",
                     label: "商品信息"
@@ -88,29 +88,16 @@ export default {
     },
     mounted() {
 
-        axios.post('/product/list', {
+        post('/product/list', {
         }).then(res => {
             const { list, pageNum, pageSize, total } = res.data.data;
             if (res.data.code !== 200) return
 
-            console.log(list.length);
-            let newList = list.map((item) => {
-                console.log(item.marketable == 0 ? "下架" : "上架", "xxxxx")
-                return {
-                    productName: item.productName,
-                    productCode: item.productCode,
-                    maxSalePrice: `${item.maxSalePrice}-${item.minSalePrice}`,
-                    saleStock: item.saleStock,
-                    salesVolume: item.salesVolume,
-                    marketable: item.marketable == 0 ? "下架" : "上架",
-                    auditState: item.auditState,
-                    createdAt: item.createdAt,
-                    productImage: item.productImage
-                }
-            })
-            this.tableData = newList;
-
-
+            this.tableData = list.map((item) => ({
+                ...item,
+                maxSalePrice: `${item.maxSalePrice}-${item.minSalePrice}`,
+                marketable: item.marketable == 0 ? "下架" : "上架",
+            }))
         })
     },
     methods: {
