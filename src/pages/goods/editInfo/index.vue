@@ -5,38 +5,58 @@
         </div>
         <el-form label-position="right" label-width="100px" :model="form" size="small" class="ediForm">
             <el-row :gutter="20">
-                <el-col :span="6">
+                <el-col :span="12">
                     <el-form-item label="租户：">
                         <el-input v-model="form.tenant"></el-input>
                     </el-form-item>
                 </el-col>
             </el-row>
             <el-row :gutter="20">
-                <el-col :span="6">
+                <el-col :span="12">
                     <el-form-item label="品牌：">
                         <el-input v-model="form.brand"></el-input>
                     </el-form-item>
                 </el-col>
             </el-row>
             <el-row :gutter="20">
-                <el-col :span="6">
+                <el-col :span="12">
                     <el-form-item label="商品款号：">
                         <el-input v-model="form.itemNo"></el-input>
                     </el-form-item>
                 </el-col>
             </el-row>
             <el-row :gutter="20">
-                <el-col :span="6">
+                <el-col :span="12">
                     <el-form-item label="商品名称：">
                         <el-input v-model="form.tradeName"></el-input>
                     </el-form-item>
                 </el-col>
             </el-row>
             <el-row :gutter="20">
-                <el-col :span="6">
+                <el-col :span="12">
                     <el-form-item label="店铺分类：">
                         <el-input v-model="form.storeClassification"></el-input>
                     </el-form-item>
+                </el-col>
+            </el-row>
+
+            <el-row :gutter="20">
+                <el-col :span="12">
+                    <el-form-item label="活动形式：">
+                        <el-input type="textarea" maxlength="200" placeholder="请输入商品卖点"
+                            :autosize="{ minRows: 4, maxRows: 80 }" v-model="form.desc"></el-input>
+                    </el-form-item>
+                </el-col>
+            </el-row>
+
+            <el-row :gutter="20">
+                <el-col :span="7">
+                    <el-form-item label="商品重量：">
+                        <el-input  v-model="form.weight" >
+                            <el-button slot="append" >kg</el-button>
+                        </el-input>
+                    </el-form-item>
+
                 </el-col>
             </el-row>
         </el-form>
@@ -52,16 +72,18 @@ export default {
                 brand: '',//品牌
                 itemNo: '',//商品款号
                 tradeName: '',  //商品名称
-                storeClassification: ''//店铺分类
+                storeClassification: '',//店铺分类
+                desc: '',//商品卖点
+                weight:'',//商品重量
             }
         }
     },
-    methods:{
-        initData(){
+    methods: {
+        initData() {
             console.log(this.$route.query)
         }
     },
-    created(){
+    created() {
         this.initData()
     }
 }
@@ -69,6 +91,7 @@ export default {
 <style lang="less" scoped>
 .edit {
     padding: 0 20px;
+
     .ediTitle {
         font-size: 18px;
         font-weight: bold;
@@ -76,7 +99,8 @@ export default {
         border-bottom: 1px solid #f6f6f6;
         padding: 0 0 15px 0;
     }
-    .ediForm{
+
+    .ediForm {
         padding: 20px 40px 20px 40px;
     }
 }
