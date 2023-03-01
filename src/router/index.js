@@ -20,7 +20,7 @@ export const pageRoutes = [
                 path: 'manage',
                 name: 'goods/manage',
                 meta: {
-                    title: '商品管理（新）'
+                    title: '商品管理'
                 },
                 component: () => import('@/pages/goods/manage'),
             },
@@ -28,7 +28,7 @@ export const pageRoutes = [
                 path: 'service',
                 name: 'goods/service',
                 meta: {
-                    title: '商品服务（新）'
+                    title: '商品服务'
                 },
                 component: () => import('@/pages/goods/service'),
             },
@@ -36,15 +36,23 @@ export const pageRoutes = [
                 path: 'price',
                 name: 'goods/price',
                 meta: {
-                    title: '价格管理（新）'
+                    title: '价格管理'
                 }
             },
             {
                 path: 'stock',
                 name: 'goods/stock',
                 meta: {
-                    title: '库存管理（新）'
+                    title: '库存管理'
                 }
+            },
+            {
+                path:"editInfo",
+                name:"goods/editInfo",
+                meta:{
+                    title:'商品管理'
+                },
+                component: () => import('@/pages/goods/editInfo'),
             }
         ]
     },
