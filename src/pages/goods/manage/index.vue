@@ -178,11 +178,11 @@ export default {
         async fetchTableData() {
             this.loading = true
 
-            //   const result = await post("/product/list")
-            //   this.tableData = result.data.list
+              // const result = await post("/product/list")
+              // this.tableData = result.data.list
 
-            //   this.pagination.size = result.data.size
-            //   this.pagination.total = result.data.total
+              // this.pagination.size = result.data.size
+              // this.pagination.total = result.data.total
             const list = []
             for (let index = 0; index < 100; index++) {
                 list.push({
