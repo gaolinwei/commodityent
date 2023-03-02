@@ -1,7 +1,7 @@
 <template>
     <div class="edit">
         <BasicInfo />
-        <SpecsInfo/>
+        <SpecsInfo />
     </div>
 </template>
 <script>
@@ -23,7 +23,7 @@ export default {
         initData() {
             console.log(this.$route.query)
         },
-      
+
     },
     created() {
         this.initData()

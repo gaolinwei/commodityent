@@ -47,11 +47,12 @@ export const pageRoutes = [
                 }
             },
             {
-                path:"editInfo",
-                name:"goods/editInfo",
-                meta:{
-                    title:'商品管理'
-                },
+                path: "editInfo",
+                name: "goods/editInfo",
+                isShow: true, //路由不用出现在侧边栏
+                // meta: {
+                //     title: '商品管理'
+                // },
                 component: () => import('@/pages/goods/editInfo'),
             }
         ]

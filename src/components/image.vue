@@ -4,10 +4,9 @@
             <el-col :span="20">
                 <el-form-item :label="title">
                     <div>
-                        <el-upload action="" list-type="picture-card" :on-preview="handlePictureCardPreview" :on-remove="handleRemove"
-                            :on-progress="uploadImg" class="uploadImg"
-                            :before-upload="beforeAvatarUpload"
-                            >
+                        <el-upload action="" :format="['jpg', 'jpeg', 'png', 'gif']" list-type="picture-card"
+                            :on-preview="handlePictureCardPreview" :on-remove="handleRemove" :on-progress="uploadImg"
+                            class="uploadImg" :http-request="beforeAvatarUpload">
                             <i class="el-icon-plus"></i>
                         </el-upload>
                         <el-dialog :visible.sync="dialogVisible">
@@ -21,7 +20,7 @@
 </template>
 <script>
 
-import { post } from "@/utils/request"
+import { post, request } from "@/utils/request"
 
 export default {
     props: {
@@ -39,33 +38,23 @@ export default {
         }
     },
     methods: {
-       async beforeAvatarUpload(file){
-            const result = await post("/file/upload")
-            console.log(result,"xxxxxxxxxx")
-            console.log(file,"11111111")
-            let index = file.name.lastIndexOf(".")
-            let extension = file.name.substr(index+1);
-            let extensionList = ["png","jpg","PNG","JPG"]
-            const isLt2M = file.size / 1024 / 1024 < 10;
-            if(!isLt2M){
-                this.$message({
-                    message:"封面不可超出10M",
-                    type:"warning",
-                    center:true
-                })
-                return false
-            }else if(extensionList.indexOf(extension)<0){
-                this.$message({
-                    message:"当前文件格式不支持",
-                    type:"error",
-                    center:true
-                })
-                return false
-            }else{
-                const obj = new FormData();
-                obj.append("files",file)
-                
-            }
+        async beforeAvatarUpload({ file }) {
+            // if (file.size > 16777216) {
+            //     this.$message.error(file.name + '大小超出16M')
+            // } else {
+            //     const formData = new FormData()
+            //     formData.append("file", file)
+            //     console.log(formData.get('file'));
+            //     const result = await request({
+            //         url: '/file/upload',
+            //         method: 'POST',
+            //         headers: {
+            //             'Content-Type': 'multipart/form-data;charset=UTF-8'
+            //         },
+            //         data: formData
+            //     })
+
+            // }
         },
         changeImage(file, fileList) {
             this.imageData = [...this.imageData, file.url]

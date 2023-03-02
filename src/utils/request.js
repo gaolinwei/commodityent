@@ -1,7 +1,7 @@
 import axios from "axios";
 import ElementUI from "element-ui";
 
-const baseURL = ``
+const baseURL = `http://114.132.197.185:80/api/v1/mall-bk`
 
 const instance = axios.create({
   baseURL
@@ -25,8 +25,9 @@ instance.interceptors.response.use(res => {
   return Promise.reject(err)
 })
 
+
 export const request = instance
-export const get  = (url, params) => instance.get(url, { params })
-export const post = (url, data)   => instance.post(url, { data })
-export const put  = (url, data)   => instance.put(url, { data })
-export const del  = (url, data)   => instance.delete(url, { data })
+export const get = (url, params) => instance.get(url, { params })
+export const post = (url, data) => instance.post(url, { data })
+export const put = (url, data) => instance.put(url, { data })
+export const del = (url, data) => instance.delete(url, { data })

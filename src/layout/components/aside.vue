@@ -58,9 +58,7 @@ export default {
         .shift().meta.title
     },
     getChildren() {
-      return pageRoutes
-        .filter((route) => route.path === this.activeIndex)
-        .shift().children
+      return pageRoutes.filter((route) => route.path === this.activeIndex).shift().children.filter((route) => !route.isShow)
     },
   },
   mounted() {

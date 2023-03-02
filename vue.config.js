@@ -4,6 +4,6 @@ module.exports = defineConfig({
   lintOnSave: false, //eslint校验
   devServer: {
     proxy: "http://114.132.197.185:80/api/v1/mall-bk",
-    port:2222
+    port: 2222
   },
 })
