@@ -39,22 +39,22 @@ export default {
     },
     methods: {
         async beforeAvatarUpload({ file }) {
-            // if (file.size > 16777216) {
-            //     this.$message.error(file.name + '大小超出16M')
-            // } else {
-            //     const formData = new FormData()
-            //     formData.append("file", file)
-            //     console.log(formData.get('file'));
-            //     const result = await request({
-            //         url: '/file/upload',
-            //         method: 'POST',
-            //         headers: {
-            //             'Content-Type': 'multipart/form-data;charset=UTF-8'
-            //         },
-            //         data: formData
-            //     })
+            if (file.size > 16777216) {
+                this.$message.error(file.name + '大小超出16M')
+            } else {
+                const formData = new FormData()
+                formData.append("file", file)
+                const result = await request({
+                    url: '/file/upload',
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'multipart/form-data;charset=UTF-8'
+                    },
+                    data: formData
+                })
+            console.log(result,"result")
 
-            // }
+            }
         },
         changeImage(file, fileList) {
             this.imageData = [...this.imageData, file.url]

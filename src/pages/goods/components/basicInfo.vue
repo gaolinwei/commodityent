@@ -1,7 +1,7 @@
 <template>
     <div class="basicInfo">
         <div class="ediTitle">基本信息</div>
-        <el-form label-position="right" label-width="100px" :model="form" size="small" class="ediForm">
+        <el-form label-position="right" label-width="100px" :model="form" size="small">
             <el-row :gutter="20">
                 <el-col :span="8">
                     <el-form-item label="租户：">
@@ -84,7 +84,6 @@ export default {
 }
 </script>
 <style scoped lang="less">
-.basicInfo {}
 
 .ediTitle {
     font-size: 18px;

@@ -1,7 +1,7 @@
 import axios from "axios";
 import ElementUI from "element-ui";
-
-const baseURL = `http://114.132.197.185:80/api/v1/mall-bk`
+// http://114.132.197.185:80/api/v1/mall-bk
+const baseURL = ``
 
 const instance = axios.create({
   baseURL

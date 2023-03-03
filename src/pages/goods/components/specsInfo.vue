@@ -6,10 +6,10 @@
         <el-form label-width="100px">
             <el-form-item label="商品规格：">
                 <el-row :gutter="20">
-                    <el-col :span="2">
+                    <el-col :span="3">
                         <el-radio v-model="radio" label="1">统一规格</el-radio>
                     </el-col>
-                    <el-col :span="2">
+                    <el-col :span="3">
                         <el-radio v-model="radio" label="2">多规格</el-radio>
                     </el-col>
                 </el-row>
@@ -108,7 +108,6 @@ export default {
 
         }
 
-        .check {}
     }
 }
 </style>

@@ -10,6 +10,7 @@ import 'normalize.css'
 import './styles/index.less'
 
 import { globalMixin } from './mixins/globalMixin';
+
 Vue.mixin(globalMixin)
 
 Vue.use(ElementUI);
