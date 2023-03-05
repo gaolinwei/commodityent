@@ -1,9 +1,9 @@
 <template>
     <div class="edit">
-        <BasicInfo />
+        <BasicInfo :data="producDetali" />
         <SpecsInfo />
         <PriceInfo />
-        <OtherSet/>
+        <OtherSet />
     </div>
 </template>
 <script>
@@ -11,6 +11,7 @@ import BasicInfo from "../components/basicInfo.vue"
 import SpecsInfo from "../components/specsInfo.vue"
 import PriceInfo from "../components/priceInfo.vue"
 import OtherSet from "../components/otherSet.vue"
+import { post } from "@/utils/request.js"
 export default {
     components: {
         BasicInfo,
@@ -22,12 +23,15 @@ export default {
         return {
             dialogImageUrl: '',
             dialogVisible: false,
-            disabled: false
+            disabled: false,
+            producDetali: null
         }
     },
     methods: {
-        initData() {
-            console.log(this.$route.query)
+        async initData() {
+            const { data, code } = await post('/product/detail', { "productCode": JSON.parse(this.$route.query.i) })
+            if (code !== 200) return
+            this.producDetali = data
         },
 
     },

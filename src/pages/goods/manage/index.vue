@@ -87,7 +87,7 @@
           <template slot="action" slot-scope="{ row }">
             <el-button icon="el-icon-search" circle size="small" @click="handleOpen('/goods/manage')"></el-button>
             <el-button type="primary" icon="el-icon-edit" circle size="small"
-              @click="handleOpen('/goods/editInfo', row)"></el-button>
+              @click="handleOpen('/goods/editInfo', row.productCode)"></el-button>
             <el-button type="danger" icon="el-icon-delete" circle size="small"></el-button>
           </template>
         </SuperTable>
@@ -163,7 +163,7 @@ export default {
     async fetchTableData() {
       this.loading = true
 
-      const result = await post("/product/list")
+      const result = await post("/product/list", {})
       this.tableData = result.data.list
 
       this.pagination.size = result.data.size

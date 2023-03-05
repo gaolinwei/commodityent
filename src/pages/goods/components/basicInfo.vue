@@ -2,31 +2,23 @@
     <div class="basicInfo">
         <div class="ediTitle">基本信息</div>
         <el-form label-position="right" label-width="100px" :model="form" size="small">
+
             <el-row :gutter="20">
-                <el-col :span="8">
-                    <el-form-item label="租户：">
-                        <el-input v-model="form.tenant"></el-input>
-                    </el-form-item>
-                </el-col>
-            </el-row>
-            <el-row :gutter="20">
-                <el-col :span="8">
-                    <el-form-item label="品牌：">
-                        <el-input v-model="form.brand"></el-input>
-                    </el-form-item>
-                </el-col>
-            </el-row>
-            <el-row :gutter="20">
-                <el-col :span="8">
+                <el-col :span="7">
                     <el-form-item label="商品款号：">
                         <el-input v-model="form.itemNo"></el-input>
                     </el-form-item>
                 </el-col>
-            </el-row>
-            <el-row :gutter="20">
-                <el-col :span="8">
+                <el-col :span="7">
                     <el-form-item label="商品名称：">
-                        <el-input v-model="form.tradeName"></el-input>
+                        <el-input v-model="form.productName"></el-input>
+                    </el-form-item>
+                </el-col>
+                <el-col :span="6">
+                    <el-form-item label="商品重量：">
+                        <el-input v-model="form.weight">
+                            <el-button slot="append">kg</el-button>
+                        </el-input>
                     </el-form-item>
                 </el-col>
             </el-row>
@@ -36,27 +28,24 @@
                         <el-input v-model="form.storeClassification"></el-input>
                     </el-form-item>
                 </el-col>
+                <el-col :span="8">
+                    <el-form-item label="商品评分：">
+                        <el-input v-model="form.score"></el-input>
+                    </el-form-item>
+                </el-col>
             </el-row>
 
             <el-row :gutter="20">
                 <el-col :span="8">
-                    <el-form-item label="活动形式：">
-                        <el-input type="textarea" maxlength="200" placeholder="请输入商品卖点"
-                            :autosize="{ minRows: 4, maxRows: 80 }" v-model="form.desc"></el-input>
+                    <el-form-item label="热门商品：">
+                        <el-select v-model="value" placeholder="请选择热门商品">
+                            <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+                            </el-option>
+                        </el-select>
                     </el-form-item>
                 </el-col>
             </el-row>
-
-            <el-row :gutter="20">
-                <el-col :span="3">
-                    <el-form-item label="商品重量：">
-                        <el-input v-model="form.weight">
-                            <el-button slot="append">kg</el-button>
-                        </el-input>
-                    </el-form-item>
-                </el-col>
-            </el-row>
-            <uploadImage title="商品图片："/>
+            <uploadImage title="商品图片：" />
         </el-form>
     </div>
 </template>
@@ -68,23 +57,49 @@ export default {
     components: {
         uploadImage
     },
+    props: {
+        data: { //列表数据
+            type: Object,
+            default: {},
+        },
+        s: {
+            type: Number
+        }
+    },
     data() {
         return {
             form: {
                 tenant: '',//租户
                 brand: '',//品牌
                 itemNo: '',//商品款号
-                tradeName: '',  //商品名称
+                productName: '',  //商品名称
                 storeClassification: '',//店铺分类
                 desc: '',//商品卖点
                 weight: '',//商品重量
+                score: "",//商品评分
+                label: "",
             },
+            options: [
+                { value: "热门", label: 1 },
+                { value: "热门", label: 1 }
+
+            ]
         }
+
+    },
+    methods: {
+        initBasicInfo() {
+            this.form.productName = this.data.productName;
+            this.form.weight = this.data.weight
+            console.log(this.form, "xxxxxxxx")
+        }
+    },
+    created() {
+        this.initBasicInfo()
     }
 }
 </script>
 <style scoped lang="less">
-
 .ediTitle {
     font-size: 18px;
     font-weight: bold;
