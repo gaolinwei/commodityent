@@ -5,9 +5,10 @@
                 <el-form-item :label="title">
                     <div>
                         <el-upload action="" :format="['jpg', 'jpeg', 'png', 'gif']" list-type="picture-card"
+                            :file-list="imageList"
                             :on-preview="handlePictureCardPreview" :on-remove="handleRemove" :on-progress="uploadImg"
                             class="uploadImg" :http-request="beforeAvatarUpload">
-                            <i class="el-icon-plus"></i>
+                            <i slot="default" class="el-icon-plus"></i>
                         </el-upload>
                         <el-dialog :visible.sync="dialogVisible">
                             <img width="100%" :src="imageUrl">
@@ -27,6 +28,10 @@ export default {
         title: {
             typeof: String,
             default: ""
+        },
+        imageList:{
+            typeof:Array,
+            default:[]
         }
     },
     data() {
@@ -34,8 +39,9 @@ export default {
             imageUrl: "",
             visible: false,
             dialogVisible: false,
-            imageData: [],
         }
+    },
+    created(){
     },
     methods: {
         async beforeAvatarUpload({ file }) {
@@ -52,17 +58,15 @@ export default {
                     },
                     data: formData
                 })
-            console.log(result,"result")
-
+                const { data,code } = result
+                if(code!==200) return
+                this.imageList = [...this.imageList, {name:"",url:data}]
             }
-        },
-        changeImage(file, fileList) {
-            this.imageData = [...this.imageData, file.url]
-            console.log(this.imageData)
         },
         //删除图片
         handleRemove(file) {
-
+            let p1 =  this.imageList.filter(item => item.url !==file.url)
+            this.imageList = p1
         },
         uploadImg(...data) {
             console.log(data)
@@ -70,7 +74,6 @@ export default {
         handlePictureCardPreview(file) {
             this.imageUrl = file.url;
             this.dialogVisible = true;
-            console.log(this.imageUrl, this.dialogVisible)
         },
     }
 }

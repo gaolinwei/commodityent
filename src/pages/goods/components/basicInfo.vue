@@ -2,7 +2,6 @@
     <div class="basicInfo">
         <div class="ediTitle">基本信息</div>
         <el-form label-position="right" label-width="100px" :model="form" size="small">
-
             <el-row :gutter="20">
                 <el-col :span="7">
                     <el-form-item label="商品款号：">
@@ -39,13 +38,13 @@
                 <el-col :span="8">
                     <el-form-item label="热门商品：">
                         <el-select v-model="value" placeholder="请选择热门商品">
-                            <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+                            <el-option v-for="item in form.options" :key="item.value" :label="item.label" :value="item.value">
                             </el-option>
                         </el-select>
                     </el-form-item>
                 </el-col>
             </el-row>
-            <uploadImage title="商品图片：" />
+            <uploadImage title="商品图片：" :imageList="form.imageList" />
         </el-form>
     </div>
 </template>
@@ -58,45 +57,14 @@ export default {
         uploadImage
     },
     props: {
-        data: { //列表数据
+        form: {
             type: Object,
-            default: {},
-        },
-        s: {
-            type: Number
+            default:{}
         }
     },
-    data() {
-        return {
-            form: {
-                tenant: '',//租户
-                brand: '',//品牌
-                itemNo: '',//商品款号
-                productName: '',  //商品名称
-                storeClassification: '',//店铺分类
-                desc: '',//商品卖点
-                weight: '',//商品重量
-                score: "",//商品评分
-                label: "",
-            },
-            options: [
-                { value: "热门", label: 1 },
-                { value: "热门", label: 1 }
-
-            ]
-        }
-
-    },
-    methods: {
-        initBasicInfo() {
-            this.form.productName = this.data.productName;
-            this.form.weight = this.data.weight
-            console.log(this.form, "xxxxxxxx")
-        }
-    },
-    created() {
-        this.initBasicInfo()
-    }
+    // beforeMount(){
+    //     this.$emit("initBasicInfo")
+    // }
 }
 </script>
 <style scoped lang="less">
