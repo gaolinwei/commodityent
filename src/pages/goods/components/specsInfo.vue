@@ -1,16 +1,17 @@
 <template>
     <div>
         <div class="ediTitle">
-            规格信息 {{ form }}
+            规格信息
         </div>
+        {{ form.skuItemMap }}
         <el-form label-width="100px">
             <el-form-item label="商品规格：">
                 <el-row :gutter="20">
                     <el-col :span="3">
-                        <el-radio v-model="specType" label=1>统一规格</el-radio>
+                        <el-radio v-model="form.specType" :label='1'>统一规格</el-radio>
                     </el-col>
                     <el-col :span="3">
-                        <el-radio v-model="specType" label=2>多规格</el-radio>
+                        <el-radio v-model="form.specType" :label='2'>多规格</el-radio>
                     </el-col>
                 </el-row>
             </el-form-item>
@@ -30,7 +31,6 @@
                             </div> -->
                         </el-col>
                     </el-row>
-
                     <div class="normsList" v-for="item in 3">
                         <el-checkbox v-model="checked" />&nbsp;&nbsp;&nbsp;&nbsp;
                         <el-select v-model="value" placeholder="请选择颜色">
@@ -41,9 +41,6 @@
                             <UploadImage />
                         </div>
                     </div>
-
-
-
                 </div>
             </el-form-item>
 
@@ -56,16 +53,14 @@ export default {
     components: {
         UploadImage
     },
-    props:{
-        form:{
-            type:Object,
-            default:{}
+    props: {
+        form: {
+            type: Object,
+            default: {}
         }
     },
     data() {
-        console.log(form.specType)
         return {
-            specType:"1",
             options: [{
                 value: "红色",
                 label: "red"

@@ -87,7 +87,7 @@
           <template slot="action" slot-scope="{ row }">
             <el-button icon="el-icon-search" circle size="small" @click="handleOpen('/goods/manage')"></el-button>
             <el-button type="primary" icon="el-icon-edit" circle size="small"
-              @click="handleOpen('/goods/editInfo', row.productCode)"></el-button>
+              @click="handleOpen(`/goods/editInfo/${row.productCode}`)"></el-button>
             <el-button type="danger" icon="el-icon-delete" circle size="small"></el-button>
           </template>
         </SuperTable>

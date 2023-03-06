@@ -47,7 +47,7 @@ export const pageRoutes = [
                 }
             },
             {
-                path: "editInfo",
+                path: "editInfo/:id",
                 name: "goods/editInfo",
                 isShow: true, //路由不用出现在侧边栏
                 // meta: {

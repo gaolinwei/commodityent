@@ -5,9 +5,8 @@
                 <el-form-item :label="title">
                     <div>
                         <el-upload action="" :format="['jpg', 'jpeg', 'png', 'gif']" list-type="picture-card"
-                            :file-list="imageList"
-                            :on-preview="handlePictureCardPreview" :on-remove="handleRemove" :on-progress="uploadImg"
-                            class="uploadImg" :http-request="beforeAvatarUpload">
+                            :file-list="imageList" :on-preview="handlePictureCardPreview" :on-remove="handleRemove"
+                            :on-progress="uploadImg" class="uploadImg" :http-request="beforeAvatarUpload">
                             <i slot="default" class="el-icon-plus"></i>
                         </el-upload>
                         <el-dialog :visible.sync="dialogVisible">
@@ -29,9 +28,9 @@ export default {
             typeof: String,
             default: ""
         },
-        imageList:{
-            typeof:Array,
-            default:[]
+        imageList: {
+            typeof: Array,
+            default: []
         }
     },
     data() {
@@ -41,7 +40,7 @@ export default {
             dialogVisible: false,
         }
     },
-    created(){
+    created() {
     },
     methods: {
         async beforeAvatarUpload({ file }) {
@@ -58,15 +57,15 @@ export default {
                     },
                     data: formData
                 })
-                const { data,code } = result
-                if(code!==200) return
-                this.imageList = [...this.imageList, {name:"",url:data}]
+                const { data, code } = result
+                if (code !== 200) return
+                let imageList = [...this.imageList, { name: "", url: data }]
+                this.$emit("headleAddImage", imageList)
             }
         },
         //删除图片
         handleRemove(file) {
-            let p1 =  this.imageList.filter(item => item.url !==file.url)
-            this.imageList = p1
+            this.$emit("removeImage", file)
         },
         uploadImg(...data) {
             console.log(data)

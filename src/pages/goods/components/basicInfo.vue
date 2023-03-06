@@ -38,13 +38,15 @@
                 <el-col :span="8">
                     <el-form-item label="热门商品：">
                         <el-select v-model="value" placeholder="请选择热门商品">
-                            <el-option v-for="item in form.options" :key="item.value" :label="item.label" :value="item.value">
+                            <el-option v-for="item in form.options" :key="item.value" :label="item.label"
+                                :value="item.value">
                             </el-option>
                         </el-select>
                     </el-form-item>
                 </el-col>
             </el-row>
-            <uploadImage title="商品图片：" :imageList="form.imageList" />
+            <uploadImage title="商品图片：" :imageList="form.imageList" @removeImage="handleRemoveImage"
+                @headleAddImage="headleAddImage" />
         </el-form>
     </div>
 </template>
@@ -59,12 +61,17 @@ export default {
     props: {
         form: {
             type: Object,
-            default:{}
+            default: {}
         }
     },
-    // beforeMount(){
-    //     this.$emit("initBasicInfo")
-    // }
+    methods: {
+        handleRemoveImage(file) {
+            this.$emit("removeImage", file)
+        },
+        headleAddImage(file) {
+            this.$emit("headleAddImage", file)
+        }
+    }
 }
 </script>
 <style scoped lang="less">
