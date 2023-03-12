@@ -3,7 +3,6 @@
         <div class="ediTitle">
             规格信息
         </div>
-        {{ form.skuItemMap }}
         <el-form label-width="100px">
             <el-form-item label="商品规格：">
                 <el-row :gutter="20">
@@ -17,29 +16,27 @@
             </el-form-item>
 
             <el-form-item label="规格设置：">
-                <div class="norms">
+                <div class="norms" v-for="(item, index, key) in form.skuItemMap" :key="index">
                     <el-row :gutter="20">
                         <el-col :span="6">
-                            规格：
-                            <el-select v-model="value" placeholder="请选择颜色">
-                                <el-option v-for="item in options" :key="item.value" :label="item.label"
-                                    :value="item.value">
-                                </el-option>
-                            </el-select>
-                            <!-- <div>
-                                规格图片:尺寸800*800像素，大小不超过1M，拖动图片可调整排序，最多上传5张
-                            </div> -->
+                            <el-input :value="index">
+                            </el-input>
                         </el-col>
                     </el-row>
-                    <div class="normsList" v-for="item in 3">
-                        <el-checkbox v-model="checked" />&nbsp;&nbsp;&nbsp;&nbsp;
-                        <el-select v-model="value" placeholder="请选择颜色">
-                            <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
-                            </el-option>
-                        </el-select>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <div class="uploadImage">
-                            <UploadImage />
+
+                    <div>
+                        <div class="normsList" v-for="data in item">
+                            <div class="normsList-1">
+                                <el-checkbox v-model="checked" />&nbsp;&nbsp;&nbsp;&nbsp;
+                                <el-input :value="data.specValue">
+                                </el-input>
+                            </div>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <div class="uploadImage" v-if="key === 0">
+                                <UploadImage />
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </el-form-item>
@@ -85,15 +82,19 @@ export default {
 }
 
 .norms {
-    border: 2px solid #f6f6f6;
     padding: 20px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid wheat;
 
     .normsList {
         display: flex;
         justify-items: center;
         align-items: center;
         padding: 30px 0;
-        border-bottom: 1px solid #f6f6f6;
+
+        .normsList-1 {
+            display: flex;
+        }
 
         .uploadImage {
             flex: 1;

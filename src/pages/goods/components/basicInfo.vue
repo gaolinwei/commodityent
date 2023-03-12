@@ -33,12 +33,11 @@
                     </el-form-item>
                 </el-col>
             </el-row>
-
             <el-row :gutter="20">
                 <el-col :span="8">
                     <el-form-item label="热门商品：">
-                        <el-select v-model="value" placeholder="请选择热门商品">
-                            <el-option v-for="item in form.options" :key="item.value" :label="item.label"
+                        <el-select v-model="form.value" placeholder="请选择热门商品">
+                            <el-option v-for="item in form.popularCommodity" :key="item.value" :label="item.label"
                                 :value="item.value">
                             </el-option>
                         </el-select>

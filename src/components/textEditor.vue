@@ -2,10 +2,10 @@
     <div>
         <div style="border: 1px solid #ccc; margin-top: 10px">
             <!-- 工具栏 -->
-            <Toolbar style="border-bottom: 1px solid #ccc" :editor="editor" :mode="mode" />
+            <Toolbar style="border-bottom: 1px solid #ccc" :editor="editor" :mode="mode" :defaultConfig="toolbarConfig" />
             <!-- 编辑器 -->
             <Editor style="height: 400px; overflow-y: hidden" :defaultConfig="editorConfig" v-model="html"
-                @onChange="onChange" @onCreated="onCreated"  />
+                @onChange="onChange" @onCreated="onCreated" />
         </div>
 
     </div>
@@ -25,7 +25,7 @@ export default {
             toolbarConfig: {
                 // toolbarKeys: [ /* 显示哪些菜单，如何排序、分组 */ ],
                 // excludeKeys: [ /* 隐藏哪些菜单 */ ],
-                excludeKeys: ['insertImage', 'insertVideo']
+                excludeKeys: ['insertImage', 'insertVideo', 'group-video', 'codeBlock'],
             },
             editorConfig: {
                 placeholder: "请输入内容...",
@@ -50,6 +50,9 @@ export default {
                                 },
                                 data: formData
                             })
+                            const { data } = result
+                            insertFn(data, "", "")
+                            console.log(Editor.getContent(), "Editor.getContent()")
                         },
                         // onBeforeUpload(file){
                         //     console.log(file,"onBeforeUpload")
